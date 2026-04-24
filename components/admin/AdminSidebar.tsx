@@ -9,11 +9,11 @@ import {
 import { cn } from '@/lib/utils'
 
 const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/posts', label: 'Posts', icon: FileText },
-  { href: '/guest-posts', label: 'Guest Posts', icon: Inbox },
-  { href: '/payments', label: 'Payments', icon: CreditCard },
-  { href: '/settings', label: 'Settings', icon: Settings },
+  { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/admin/posts', label: 'Posts', icon: FileText },
+  { href: '/admin/guest-posts', label: 'Guest Posts', icon: Inbox },
+  { href: '/admin/payments', label: 'Payments', icon: CreditCard },
+  { href: '/admin/settings', label: 'Settings', icon: Settings },
 ]
 
 export default function AdminSidebar({ user }: { user: { name?: string | null; image?: string | null; email?: string | null } }) {
@@ -23,7 +23,7 @@ export default function AdminSidebar({ user }: { user: { name?: string | null; i
     <aside className="w-64 bg-gray-900 border-r border-gray-800 flex flex-col shrink-0">
       {/* Logo */}
       <div className="p-6 border-b border-gray-800">
-        <Link href="/dashboard" className="flex items-center gap-2 text-white font-bold text-lg">
+        <Link href="/admin/dashboard" className="flex items-center gap-2 text-white font-bold text-lg">
           <Zap className="w-5 h-5 text-brand-400 fill-current" />
           <span>Aivexy Admin</span>
         </Link>

@@ -26,7 +26,7 @@ export default async function PostsPage({ searchParams }: { searchParams: { stat
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-white">Posts</h1>
-        <Link href="/posts/new" className="flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors">
+        <Link href="/admin/posts/new" className="flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors">
           <Plus className="w-4 h-4" /> New Post
         </Link>
       </div>
@@ -36,7 +36,7 @@ export default async function PostsPage({ searchParams }: { searchParams: { stat
         {tabs.map(tab => (
           <Link
             key={tab}
-            href={tab === 'all' ? '/posts' : `/posts?status=${tab}`}
+            href={tab === 'all' ? '/admin/posts' : `/admin/posts?status=${tab}`}
             className={cn('px-4 py-1.5 rounded-lg text-sm font-medium capitalize transition-colors', status === tab ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white')}
           >
             {tab}
@@ -88,7 +88,7 @@ export default async function PostsPage({ searchParams }: { searchParams: { stat
                         <Eye className="w-4 h-4" />
                       </a>
                     )}
-                    <Link href={`/posts/${post.id}/edit`} className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition-colors" title="Edit">
+                    <Link href={`/admin/posts/${post.id}/edit`} className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition-colors" title="Edit">
                       <Edit2 className="w-4 h-4" />
                     </Link>
                     <DeletePostButton id={post.id} />

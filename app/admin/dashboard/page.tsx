@@ -39,7 +39,7 @@ export default async function DashboardPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-        <Link href="/posts/new" className="flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors">
+        <Link href="/admin/posts/new" className="flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors">
           <Plus className="w-4 h-4" /> New Post
         </Link>
       </div>
@@ -57,7 +57,7 @@ export default async function DashboardPage() {
         <div className="bg-gray-900 rounded-2xl border border-gray-800 p-6">
           <div className="flex items-center justify-between mb-5">
             <h2 className="font-semibold text-white">Recent Posts</h2>
-            <Link href="/posts" className="text-sm text-brand-400 hover:underline flex items-center gap-1">
+            <Link href="/admin/posts" className="text-sm text-brand-400 hover:underline flex items-center gap-1">
               View all <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -69,7 +69,7 @@ export default async function DashboardPage() {
                   <p className="text-sm text-gray-200 truncate">{post.title}</p>
                   <p className="text-xs text-gray-500">{post.category.name} · {formatDate(post.updatedAt)}</p>
                 </div>
-                <Link href={`/posts/${post.id}/edit`} className="text-xs text-brand-400 hover:underline shrink-0">Edit</Link>
+                <Link href={`/admin/posts/${post.id}/edit`} className="text-xs text-brand-400 hover:underline shrink-0">Edit</Link>
               </div>
             ))}
           </div>
@@ -79,7 +79,7 @@ export default async function DashboardPage() {
         <div className="bg-gray-900 rounded-2xl border border-gray-800 p-6">
           <div className="flex items-center justify-between mb-5">
             <h2 className="font-semibold text-white">Guest Post Queue</h2>
-            <Link href="/guest-posts" className="text-sm text-brand-400 hover:underline flex items-center gap-1">
+            <Link href="/admin/guest-posts" className="text-sm text-brand-400 hover:underline flex items-center gap-1">
               Review all <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

@@ -65,7 +65,7 @@ export default function PostEditor({ categories, post }: Props) {
       })
       if (!res.ok) throw new Error('Failed to save post')
       const data = await res.json()
-      router.push('/posts')
+      router.push('/admin/posts')
     } catch (e: any) {
       setError(e.message)
       setLoading(false)
