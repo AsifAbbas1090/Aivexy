@@ -1,4 +1,4 @@
-import { Twitter, Globe } from 'lucide-react'
+import { AtSign, Globe } from 'lucide-react'
 
 interface AuthorBioProps {
   author: {
@@ -29,7 +29,7 @@ export default function AuthorBio({ author }: AuthorBioProps) {
         <div className="flex items-center gap-3 mt-3">
           {author.twitter && (
             <a href={`https://twitter.com/${author.twitter}`} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-600 transition-colors" aria-label="Twitter">
-              <Twitter className="w-4 h-4" />
+              <AtSign className="w-4 h-4" />
             </a>
           )}
           {author.website && (

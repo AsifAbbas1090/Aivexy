@@ -129,7 +129,7 @@ export default async function ArticlePage({ params }: Props) {
             )}
 
             {/* Content */}
-            <div className="prose prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-brand-600 dark:prose-a:text-brand-400 prose-img:rounded-xl">
+            <div className="prose-custom">
               <p className="lead">{post.excerpt}</p>
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
             </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Twitter, Linkedin, Link2, Check } from 'lucide-react'
+import { BriefcaseBusiness, Check, Link2, Send } from 'lucide-react'
 
 interface ShareButtonsProps {
   title: string
@@ -41,14 +41,14 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
         className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-[#1DA1F2] transition-colors"
         aria-label="Share on Twitter"
       >
-        <Twitter className="w-4 h-4" />
+        <Send className="w-4 h-4" />
       </button>
       <button
         onClick={() => handleShare('linkedin')}
         className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-[#0A66C2] transition-colors"
         aria-label="Share on LinkedIn"
       >
-        <Linkedin className="w-4 h-4" />
+        <BriefcaseBusiness className="w-4 h-4" />
       </button>
       <button
         onClick={handleCopy}

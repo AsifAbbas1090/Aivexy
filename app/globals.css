@@ -6,23 +6,215 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
+    --border: 214.3 31.8% 91.4%;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 222.2 84% 4.9%;
+      --foreground: 210 40% 98%;
+      --border: 217.2 32.6% 17.5%;
+    }
   }
 
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-white text-gray-900 antialiased;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    @apply antialiased;
   }
 }
 
 @layer components {
   .prose-custom {
-    @apply prose prose-gray max-w-none
-      prose-headings:font-bold prose-headings:text-gray-900
-      prose-a:text-brand-600 prose-a:no-underline hover:prose-a:underline
-      prose-code:bg-gray-100 prose-code:rounded prose-code:px-1 prose-code:py-0.5
-      prose-pre:bg-gray-900 prose-pre:text-gray-100;
+    max-width: none;
+    color: rgb(55 65 81);
+    line-height: 1.75;
+  }
+
+  .prose-custom-invert {
+    color: rgb(209 213 219);
+  }
+
+  :is(.prose-custom, .prose-custom-invert) > :first-child {
+    margin-top: 0;
+  }
+
+  :is(.prose-custom, .prose-custom-invert) > :last-child {
+    margin-bottom: 0;
+  }
+
+  :is(.prose-custom, .prose-custom-invert) h1,
+  :is(.prose-custom, .prose-custom-invert) h2,
+  :is(.prose-custom, .prose-custom-invert) h3,
+  :is(.prose-custom, .prose-custom-invert) h4 {
+    font-weight: 700;
+    line-height: 1.25;
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+  }
+
+  .prose-custom h1,
+  .prose-custom h2,
+  .prose-custom h3,
+  .prose-custom h4 {
+    color: rgb(17 24 39);
+  }
+
+  .prose-custom-invert h1,
+  .prose-custom-invert h2,
+  .prose-custom-invert h3,
+  .prose-custom-invert h4 {
+    color: rgb(243 244 246);
+  }
+
+  :is(.prose-custom, .prose-custom-invert) p,
+  :is(.prose-custom, .prose-custom-invert) ul,
+  :is(.prose-custom, .prose-custom-invert) ol,
+  :is(.prose-custom, .prose-custom-invert) pre,
+  :is(.prose-custom, .prose-custom-invert) blockquote {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+
+  :is(.prose-custom, .prose-custom-invert) ul,
+  :is(.prose-custom, .prose-custom-invert) ol {
+    padding-left: 1.5rem;
+  }
+
+  :is(.prose-custom, .prose-custom-invert) ul {
+    list-style-type: disc;
+  }
+
+  :is(.prose-custom, .prose-custom-invert) ol {
+    list-style-type: decimal;
+  }
+
+  :is(.prose-custom, .prose-custom-invert) li + li {
+    margin-top: 0.375rem;
+  }
+
+  .prose-custom .lead {
+    color: rgb(75 85 99);
+    font-size: 1.125rem;
+  }
+
+  .prose-custom-invert .lead {
+    color: rgb(156 163 175);
+    font-size: 1.125rem;
+  }
+
+  .prose-custom a {
+    color: rgb(79 70 229);
+    text-decoration: none;
+  }
+
+  .prose-custom-invert a {
+    color: rgb(129 140 248);
+    text-decoration: none;
+  }
+
+  :is(.prose-custom, .prose-custom-invert) a:hover {
+    text-decoration: underline;
+  }
+
+  :is(.prose-custom, .prose-custom-invert) strong {
+    color: inherit;
+    font-weight: 600;
+  }
+
+  .prose-custom code {
+    background-color: rgb(243 244 246);
+    border-radius: 0.375rem;
+    color: rgb(17 24 39);
+    padding: 0.125rem 0.375rem;
+  }
+
+  .prose-custom-invert code {
+    background-color: rgb(31 41 55);
+    border-radius: 0.375rem;
+    color: rgb(243 244 246);
+    padding: 0.125rem 0.375rem;
+  }
+
+  :is(.prose-custom, .prose-custom-invert) pre {
+    background-color: rgb(17 24 39);
+    border-radius: 0.75rem;
+    color: rgb(243 244 246);
+    overflow-x: auto;
+    padding: 1rem 1.25rem;
+  }
+
+  :is(.prose-custom, .prose-custom-invert) pre code {
+    background: transparent;
+    border-radius: 0;
+    color: inherit;
+    padding: 0;
+  }
+
+  .prose-custom blockquote {
+    border-left: 4px solid rgb(199 210 254);
+    color: rgb(75 85 99);
+    font-style: italic;
+    padding-left: 1rem;
+  }
+
+  .prose-custom-invert blockquote {
+    border-left: 4px solid rgb(99 102 241);
+    color: rgb(156 163 175);
+    font-style: italic;
+    padding-left: 1rem;
+  }
+
+  :is(.prose-custom, .prose-custom-invert) img {
+    border-radius: 0.75rem;
+  }
+
+  .prose-custom hr {
+    border-top: 1px solid rgb(229 231 235);
+    margin: 2rem 0;
+  }
+
+  .prose-custom-invert hr {
+    border-top: 1px solid rgb(55 65 81);
+    margin: 2rem 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .prose-custom {
+      color: rgb(209 213 219);
+    }
+
+    .prose-custom h1,
+    .prose-custom h2,
+    .prose-custom h3,
+    .prose-custom h4 {
+      color: rgb(243 244 246);
+    }
+
+    .prose-custom .lead {
+      color: rgb(156 163 175);
+    }
+
+    .prose-custom a {
+      color: rgb(129 140 248);
+    }
+
+    .prose-custom code {
+      background-color: rgb(31 41 55);
+      color: rgb(243 244 246);
+    }
+
+    .prose-custom blockquote {
+      border-left-color: rgb(99 102 241);
+      color: rgb(156 163 175);
+    }
+
+    .prose-custom hr {
+      border-top-color: rgb(55 65 81);
+    }
   }
 }
