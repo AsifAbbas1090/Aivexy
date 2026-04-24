@@ -10,9 +10,8 @@ const nextConfig = {
   },
   experimental: {
     mdxRs: true,
+    serverComponentsExternalPackages: ['@prisma/client', 'prisma', 'bcrypt'],
   },
-  // Required so Prisma generated client resolves correctly on Vercel
-  serverExternalPackages: ['@prisma/client', 'prisma'],
 }
 
 export default nextConfig

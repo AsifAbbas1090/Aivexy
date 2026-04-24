@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import { Pool } from 'pg'
+import bcrypt from 'bcrypt'
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL })
 
@@ -19,11 +20,11 @@ function randomViews() {
 
 async function upsertUser(client: any, data: any) {
   const res = await client.query(
-    `INSERT INTO "User" (id, name, email, role, bio, username, website, twitter, "createdAt")
-     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,NOW())
-     ON CONFLICT (email) DO UPDATE SET name=EXCLUDED.name, role=EXCLUDED.role
+    `INSERT INTO "User" (id, name, email, password, role, bio, username, website, twitter, "createdAt")
+     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NOW())
+     ON CONFLICT (email) DO UPDATE SET name=EXCLUDED.name, role=EXCLUDED.role, password=EXCLUDED.password
      RETURNING id`,
-    [data.id, data.name, data.email, data.role, data.bio || null, data.username || null, data.website || null, data.twitter || null]
+    [data.id, data.name, data.email, data.password || null, data.role, data.bio || null, data.username || null, data.website || null, data.twitter || null]
   )
   return res.rows[0].id
 }
@@ -64,6 +65,10 @@ async function main() {
   console.log('🌱 Seeding database...\n')
 
   try {
+    // Hash passwords
+    const adminHash = await bcrypt.hash('admin123', 10)
+    const sarahHash = await bcrypt.hash('author123', 10)
+
     // Users
     const adminId = await upsertUser(client, {
       id: 'user_admin',
@@ -71,6 +76,7 @@ async function main() {
       name: 'Aivexy Admin',
       role: 'ADMIN',
       username: 'admin',
+      password: adminHash,
     })
 
     const sarahId = await upsertUser(client, {
@@ -82,6 +88,7 @@ async function main() {
       bio: 'AI researcher and technical writer covering the intersection of language models and content creation. Former ML engineer turned full-time blogger.',
       twitter: 'sarahchenai',
       website: 'https://sarahchen.dev',
+      password: sarahHash,
     })
 
     console.log('✓ Users created')
@@ -251,9 +258,9 @@ async function main() {
     }
 
     console.log('\n✅ Seed complete!')
-    console.log('   Admin: admin@aivexy.com')
-    console.log('   Author: sarah@aivexy.com')
-    console.log('   Posts: 12')
+    console.log('   Admin:  admin@aivexy.com  / admin123')
+    console.log('   Author: sarah@aivexy.com  / author123')
+    console.log('   Posts:  12')
   } finally {
     client.release()
     await pool.end()
