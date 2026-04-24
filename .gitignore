@@ -16,8 +16,6 @@ node_modules/
 # generated
 /app/generated/
 
-# prisma
-prisma.config.ts
 
 # env files — NEVER commit secrets
 .env

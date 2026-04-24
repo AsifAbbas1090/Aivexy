@@ -1,0 +1,14 @@
+{
+  "framework": "nextjs",
+  "functions": {
+    "app/api/stripe/webhook/route.ts": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/rss.xml",
+      "headers": [{ "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" }]
+    }
+  ]
+}
