@@ -6,10 +6,9 @@ export default withAuth(
     const token = req.nextauth.token
     const path = req.nextUrl.pathname
 
-    // Admin-only paths
-    const isAdminPath = path.startsWith('/dashboard') || path.startsWith('/admin')
-    if (isAdminPath && token?.role !== 'ADMIN') {
-      return NextResponse.redirect(new URL('/signin', req.url))
+    // Admin-only paths — non-admins get redirected to their dashboard
+    if (path.startsWith('/admin') && token?.role !== 'ADMIN') {
+      return NextResponse.redirect(new URL('/dashboard', req.url))
     }
 
     // Admin API
@@ -21,13 +20,8 @@ export default withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token, req }) => {
-        const path = req.nextUrl.pathname
-        if (path.startsWith('/dashboard') || path.startsWith('/admin')) {
-          return !!token
-        }
-        return true
-      },
+      // Allow any authenticated user through — the function above handles role checks
+      authorized: ({ token }) => !!token,
     },
   }
 )

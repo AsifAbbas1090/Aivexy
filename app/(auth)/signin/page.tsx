@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { signIn } from 'next-auth/react'
+import { signIn, getSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Zap, Loader2 } from 'lucide-react'
 
@@ -16,31 +16,27 @@ export default function SignInPage() {
     e.preventDefault()
     setLoading(true)
     setError('')
-    const res = await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-    })
-    setLoading(false)
+    const res = await signIn('credentials', { email, password, redirect: false })
     if (res?.error) {
+      setLoading(false)
       setError('Invalid email or password.')
-    } else {
-      router.push('/dashboard')
+      return
     }
+    // Fetch session to get role, then redirect accordingly
+    const session = await getSession()
+    const role = (session?.user as any)?.role
+    router.push(role === 'ADMIN' ? '/admin/dashboard' : '/dashboard')
   }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        {/* Logo */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 text-brand-700 dark:text-brand-400">
             <Zap className="w-8 h-8 fill-current" />
             <span className="text-3xl font-bold tracking-tight">Aivexy</span>
           </div>
-          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-            Sign in to access the dashboard
-          </p>
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Sign in to your account</p>
         </div>
 
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 p-8">
@@ -78,7 +74,6 @@ export default function SignInPage() {
             </div>
           </div>
 
-          {/* Credentials */}
           <form onSubmit={handleCredentials} className="space-y-4">
             {error && (
               <div className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 px-3 py-2 rounded-lg">
@@ -86,22 +81,18 @@ export default function SignInPage() {
               </div>
             )}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Email
-              </label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
-                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
                 placeholder="admin@aivexy.com"
+                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Password
-              </label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Password</label>
               <input
                 type="password"
                 value={password}
@@ -119,6 +110,10 @@ export default function SignInPage() {
               Sign In
             </button>
           </form>
+
+          <p className="mt-4 text-center text-xs text-gray-400">
+            Admin: admin@aivexy.com / admin123 &nbsp;·&nbsp; Author: sarah@aivexy.com / author123
+          </p>
         </div>
       </div>
     </div>
