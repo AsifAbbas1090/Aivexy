@@ -1,0 +1,61 @@
+{
+  "name": "aivexy",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^2.11.2",
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
+    "@next/mdx": "^16.2.4",
+    "@prisma/client": "^7.8.0",
+    "@react-email/components": "^1.0.12",
+    "@stripe/stripe-js": "^9.3.1",
+    "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.9.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^1.9.0",
+    "next": "14.2.29",
+    "next-auth": "^4.24.14",
+    "next-cloudinary": "^6.17.5",
+    "prisma": "^7.8.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-email": "^6.0.0",
+    "reading-time": "^1.5.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
+    "resend": "^6.12.2",
+    "stripe": "^22.0.2",
+    "tailwind-merge": "^3.5.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/engines",
+      "prisma",
+      "bcrypt",
+      "sharp"
+    ]
+  },
+  "devDependencies": {
+    "@types/mdx": "^2.0.13",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "dotenv": "^17.4.2",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.29",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

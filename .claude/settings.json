@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm --version)",
+      "Bash(npm --version)",
+      "Bash(psql -U postgres -c \"\\\\du\")",
+      "Bash(psql -U admin -c \"\\\\du\")",
+      "Bash(pnpm create *)"
+    ]
+  }
+}
