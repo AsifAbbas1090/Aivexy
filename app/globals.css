@@ -9,12 +9,10 @@
     --border: 214.3 31.8% 91.4%;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: 222.2 84% 4.9%;
-      --foreground: 210 40% 98%;
-      --border: 217.2 32.6% 17.5%;
-    }
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
   }
 
   * {
@@ -183,38 +181,36 @@
     margin: 2rem 0;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .prose-custom {
-      color: rgb(209 213 219);
-    }
+  .dark .prose-custom {
+    color: rgb(209 213 219);
+  }
 
-    .prose-custom h1,
-    .prose-custom h2,
-    .prose-custom h3,
-    .prose-custom h4 {
-      color: rgb(243 244 246);
-    }
+  .dark .prose-custom h1,
+  .dark .prose-custom h2,
+  .dark .prose-custom h3,
+  .dark .prose-custom h4 {
+    color: rgb(243 244 246);
+  }
 
-    .prose-custom .lead {
-      color: rgb(156 163 175);
-    }
+  .dark .prose-custom .lead {
+    color: rgb(156 163 175);
+  }
 
-    .prose-custom a {
-      color: rgb(129 140 248);
-    }
+  .dark .prose-custom a {
+    color: rgb(129 140 248);
+  }
 
-    .prose-custom code {
-      background-color: rgb(31 41 55);
-      color: rgb(243 244 246);
-    }
+  .dark .prose-custom code {
+    background-color: rgb(31 41 55);
+    color: rgb(243 244 246);
+  }
 
-    .prose-custom blockquote {
-      border-left-color: rgb(99 102 241);
-      color: rgb(156 163 175);
-    }
+  .dark .prose-custom blockquote {
+    border-left-color: rgb(99 102 241);
+    color: rgb(156 163 175);
+  }
 
-    .prose-custom hr {
-      border-top-color: rgb(55 65 81);
-    }
+  .dark .prose-custom hr {
+    border-top-color: rgb(55 65 81);
   }
 }
