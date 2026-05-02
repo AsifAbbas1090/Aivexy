@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { resend } from '@/lib/resend'
+import { getResend } from '@/lib/resend'
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? 'newsletter@aivexy.com'
 const SITE_NAME = 'Aivexy'
@@ -18,6 +18,11 @@ export async function POST(req: NextRequest) {
   }
 
   await prisma.newsletterSubscriber.create({ data: { email } })
+
+  const resend = getResend()
+  if (!resend) {
+    return NextResponse.json({ success: true, emailSent: false }, { status: 201 })
+  }
 
   // Send welcome email
   try {
