@@ -8,6 +8,8 @@ import { cn } from '@/lib/utils'
 
 const PER_PAGE = 10
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Blog',
   description: 'All articles on AI tools, writing craft, SEO, prompt engineering, and content monetization.',

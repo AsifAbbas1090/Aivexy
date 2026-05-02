@@ -2,6 +2,8 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Categories — Aivexy',
   description: 'Browse all topics covered on Aivexy — AI tools, SEO, productivity, prompt engineering, and more.',

@@ -8,6 +8,8 @@ import AdSlot from '@/components/ads/AdSlot'
 import { formatDate } from '@/lib/utils'
 import { Clock, ArrowRight, Zap } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export default async function HomePage() {
   const [featuredPost, latestPosts, categories] = await Promise.all([
     prisma.post.findFirst({

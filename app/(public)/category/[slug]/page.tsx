@@ -3,6 +3,8 @@ import ArticleCard from '@/components/blog/ArticleCard'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const category = await prisma.category.findUnique({ where: { slug: params.slug } })
   if (!category) return {}
@@ -10,11 +12,6 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: category.name,
     description: category.description ?? `Browse all articles in ${category.name}.`,
   }
-}
-
-export async function generateStaticParams() {
-  const cats = await prisma.category.findMany({ select: { slug: true } })
-  return cats.map(c => ({ slug: c.slug }))
 }
 
 export default async function CategoryPage({ params }: { params: { slug: string } }) {

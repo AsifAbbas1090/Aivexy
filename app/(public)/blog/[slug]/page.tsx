@@ -9,6 +9,8 @@ import { Clock, Eye, Calendar } from 'lucide-react'
 import type { Metadata } from 'next'
 import ReadingProgress from '@/components/blog/ReadingProgress'
 
+export const dynamic = 'force-dynamic'
+
 interface Props {
   params: { slug: string }
 }
@@ -34,11 +36,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: post.coverImage ? [{ url: post.coverImage }] : [{ url: `${siteUrl}/og-default.png` }],
     },
   }
-}
-
-export async function generateStaticParams() {
-  const posts = await prisma.post.findMany({ where: { published: true }, select: { slug: true } })
-  return posts.map(p => ({ slug: p.slug }))
 }
 
 export default async function ArticlePage({ params }: Props) {
