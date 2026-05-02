@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { stripe } from '@/lib/stripe'
+import { getStripe } from '@/lib/stripe'
 
 const TIER_PRICES: Record<string, number> = {
   BASIC: 4900,
@@ -21,6 +21,8 @@ export async function POST(req: NextRequest) {
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'
+
+  const stripe = getStripe()
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
