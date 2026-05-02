@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { resend, FROM_EMAIL, SITE_NAME } from '@/lib/resend'
+import { resend } from '@/lib/resend'
+
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? 'newsletter@aivexy.com'
+const SITE_NAME = 'Aivexy'
 
 export async function POST(req: NextRequest) {
   const { email } = await req.json()

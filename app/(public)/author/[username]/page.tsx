@@ -2,7 +2,7 @@ import { prisma } from '@/lib/prisma'
 import ArticleCard from '@/components/blog/ArticleCard'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { Globe, Twitter } from 'lucide-react'
+import { AtSign, Globe } from 'lucide-react'
 
 export async function generateMetadata({ params }: { params: { username: string } }): Promise<Metadata> {
   const user = await prisma.user.findUnique({ where: { username: params.username } })
@@ -51,7 +51,7 @@ export default async function AuthorPage({ params }: { params: { username: strin
             )}
             {user.twitter && (
               <a href={`https://twitter.com/${user.twitter}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
-                <Twitter className="w-4 h-4" /> @{user.twitter}
+                <AtSign className="w-4 h-4" /> @{user.twitter}
               </a>
             )}
             <span className="text-gray-400">{user.posts.length} article{user.posts.length !== 1 ? 's' : ''}</span>
